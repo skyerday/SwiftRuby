@@ -54,10 +54,10 @@ extension Int: int_like {
         return 1
     }
 
-    public func downto( limit: Int, block: (i: Int) -> () ) -> Int {
+    public func downto( _ limit: Int, block: (_ i: Int) -> () ) -> Int {
         var i = self
         while i >= limit {
-            block( i: i )
+            block( i )
             i  -= 1
         }
         return self
@@ -102,19 +102,19 @@ extension Int: int_like {
         return self-1
     }
 
-    public func times( block: (i: Int) -> () ) -> Int {
+    public func times( _ block: (_ i: Int) -> () ) -> Int {
         var i = 1
         while i <= self {
-            block( i: i )
+            block( i )
             i += 1
         }
         return self
     }
 
-    public func upto( limit: Int, block: (i: Int) -> () ) -> Int {
+    public func upto( _ limit: Int, block: (_ i: Int) -> () ) -> Int {
         var i = self
         while i <= limit {
-            block( i: i )
+            block( i )
             i += 1
         }
         return self
