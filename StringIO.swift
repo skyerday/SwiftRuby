@@ -67,7 +67,7 @@ open class StringIO: IO {
         }
 
         let sepchar = sep.to_s.ord
-        let endOfLine = memchr( data.bytes+offset, Int32(sepchar), Int(data.length-offset) ).load(as: UnsafeMutablePointer<Int8>.self)
+        let endOfLine = memchr( data.bytes+offset, Int32(sepchar), Int(data.length-offset) ).assumingMemoryBound(to: Int8.self)
 
         if endOfLine != nil {
             endOfLine.pointee = 0

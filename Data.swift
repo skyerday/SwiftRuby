@@ -39,8 +39,7 @@ open class Data: RubyObject, string_like, array_like, char_like, data_like {
 
     open var capacity = 0 {
         didSet {
-            let raw = realloc(bytes, capacity+1)
-            bytes = (raw?.load(as: UnsafeMutablePointer<Int8>.self))!
+            bytes = realloc(bytes, capacity+1).assumingMemoryBound(to: Int8.self)
         }
     }
 
@@ -52,7 +51,8 @@ open class Data: RubyObject, string_like, array_like, char_like, data_like {
 
     public convenience init( capacity: Int? = 0 ) {
         let capacity = capacity ?? 10 * 1024
-        self.init( bytes: malloc( capacity+1 ).load(as: UnsafeMutablePointer<Int8>.self))
+        let bytes = malloc(capacity+1).assumingMemoryBound(to: Int8.self)
+        self.init( bytes: bytes)
         self.capacity = capacity
     }
 

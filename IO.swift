@@ -281,7 +281,7 @@ open class IO: RubyObject, string_like, data_like {
 
 
     open class func write( _ name: string_like, _ string: data_like, _ offset: Int? = 0, _ open_args: String? = nil, file: StaticString = #file, line: UInt = #line ) -> fixnum? {
-        if let ioFile = File.open( name as! Int, open_args ?? "w", file: file, line: line ) {
+        if let ioFile = File.open(name, open_args ?? "w", file: file, line: line) {
             if offset != nil {
                 ioFile.seek( offset!, Int(SEEK_SET), file: file, line: line )
             }

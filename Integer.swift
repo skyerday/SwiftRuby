@@ -47,7 +47,7 @@ extension Int: int_like {
     }
 
     public var chr: String {
-        return "\(UnicodeScalar(self))"
+        return "\(UnicodeScalar(self)!)"
     }
 
     public var denominator: Int {
